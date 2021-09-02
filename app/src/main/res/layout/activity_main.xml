@@ -23,13 +23,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="24dp"
+                android:padding="10dp"
+                android:textColor="#5d5d5d"
                 android:text="Team A" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingBottom="15dp"
                 android:textSize="50sp"
                 android:textColor="@android:color/black"
                 android:text="0" />
@@ -37,14 +38,22 @@
             <Button
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#c2c2c2"
+                android:textColor="@android:color/black"
                 android:text="+3 POINTS" />
             <Button
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="#c2c2c2"
+                android:textColor="@android:color/black"
                 android:text="+2 POINT" />
             <Button
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#c2c2c2"
+                android:textColor="@android:color/black"
                 android:text="FREE THROW" />
         </LinearLayout>
 
@@ -58,13 +67,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="24dp"
+                android:padding="10dp"
+                android:textColor="#5d5d5d"
                 android:text="Team B" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingBottom="15dp"
                 android:textSize="50sp"
                 android:textColor="@android:color/black"
                 android:text="0" />
@@ -72,14 +82,22 @@
             <Button
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#c2c2c2"
+                android:textColor="@android:color/black"
                 android:text="+3 POINTS" />
             <Button
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="#c2c2c2"
+                android:textColor="@android:color/black"
                 android:text="+2 POINTS" />
             <Button
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#c2c2c2"
+                android:textColor="@android:color/black"
                 android:text="FREE THROW" />
         </LinearLayout>
 
@@ -89,6 +107,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#c2c2c2"
+        android:textColor="@android:color/black"
         android:text="Reset" />
 
 </LinearLayout>
