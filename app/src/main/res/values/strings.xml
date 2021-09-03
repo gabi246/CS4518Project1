@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Project1</string>
+    <string name="team_a">Team A</string>
+    <string name="team_b">Team B</string>
+    <string name="score_a">0</string>
+    <string name="score_b">0</string>
+    <string name="add_3_a">+3 POINTS</string>
+    <string name="add_3_b">+3 POINTS</string>
+    <string name="add_2_a">+2 POINTS</string>
+    <string name="add_2_b">+2 POINTS</string>
+    <string name="free_throw_a">FREE THROW</string>
+    <string name="free_throw_b">FREE THROW</string>
+    <string name="reset">RESET</string>
 </resources>

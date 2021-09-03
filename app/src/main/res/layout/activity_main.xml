@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -26,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#5d5d5d"
-                android:text="Team A" />
+                android:text="@string/team_a" />
 
             <TextView
                 android:id="@+id/score_a"
@@ -35,7 +36,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="50sp"
                 android:textColor="@android:color/black"
-                android:text="0" />
+                tools:text="@string/score_a" />
 
             <Button
                 android:id="@+id/add_3_a"
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#c2c2c2"
                 android:textColor="@android:color/black"
-                android:text="+3 POINTS" />
+                android:text="@string/add_3_a" />
             <Button
                 android:id="@+id/add_2_a"
                 android:layout_width="135dp"
@@ -51,7 +52,7 @@
                 android:layout_marginVertical="5dp"
                 android:backgroundTint="#c2c2c2"
                 android:textColor="@android:color/black"
-                android:text="+2 POINTS" />
+                android:text="@string/add_2_a" />
             <Button
                 android:id="@+id/free_throw_a"
                 android:layout_width="135dp"
@@ -59,7 +60,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#c2c2c2"
                 android:textColor="@android:color/black"
-                android:text="FREE THROW" />
+                android:text="@string/free_throw_a" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#5d5d5d"
-                android:text="Team B" />
+                android:text="@string/team_b" />
 
             <TextView
                 android:id="@+id/score_b"
@@ -84,7 +85,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="50sp"
                 android:textColor="@android:color/black"
-                android:text="0" />
+                tools:text="@string/score_b" />
 
             <Button
                 android:id="@+id/add_3_b"
@@ -92,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#c2c2c2"
                 android:textColor="@android:color/black"
-                android:text="+3 POINTS" />
+                android:text="@string/add_3_b" />
             <Button
                 android:id="@+id/add_2_b"
                 android:layout_width="135dp"
@@ -100,7 +101,7 @@
                 android:layout_marginVertical="5dp"
                 android:backgroundTint="#c2c2c2"
                 android:textColor="@android:color/black"
-                android:text="+2 POINTS" />
+                android:text="@string/add_2_b" />
             <Button
                 android:id="@+id/free_throw_b"
                 android:layout_width="135dp"
@@ -108,7 +109,7 @@
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#c2c2c2"
                 android:textColor="@android:color/black"
-                android:text="FREE THROW" />
+                android:text="@string/free_throw_b" />
         </LinearLayout>
 
 
@@ -120,6 +121,6 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#c2c2c2"
         android:textColor="@android:color/black"
-        android:text="Reset" />
+        android:text="@string/reset" />
 
 </LinearLayout>
