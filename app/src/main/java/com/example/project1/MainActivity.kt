@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.view.View
+import android.graphics.Color
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var add_2_b: Button
     private lateinit var free_throw_b: Button
     private lateinit var reset: Button
+    private lateinit var game_over: Button
 
     private val teamA = Team("Team A", 0, false)
     private val teamB = Team("Team B", 0, false)
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         add_2_b = findViewById(R.id.add_2_b)
         free_throw_b = findViewById(R.id.free_throw_b)
         reset = findViewById(R.id.reset)
+        game_over = findViewById(R.id.game_over)
 
         add_3_a.setOnClickListener { view: View ->
             teamA.score = teamA.score + 3
@@ -75,9 +78,40 @@ class MainActivity : AppCompatActivity() {
             teamB.score = 0
             score_a.setText(teamA.score.toString())
             score_b.setText(teamB.score.toString())
+            score_a.setTextColor(Color.parseColor("#000000"))
+            score_b.setTextColor(Color.parseColor("#000000"))
+            add_3_a.setClickable(true)
+            add_2_a.setClickable(true)
+            free_throw_a.setClickable(true)
+            add_3_b.setClickable(true)
+            add_2_b.setClickable(true)
+            free_throw_b.setClickable(true)
+        }
+
+        game_over.setOnClickListener { view: View ->
+            add_3_a.setClickable(false)
+            add_2_a.setClickable(false)
+            free_throw_a.setClickable(false)
+            add_3_b.setClickable(false)
+            add_2_b.setClickable(false)
+            free_throw_b.setClickable(false)
+            if(checkWinner(teamA, teamB) && checkWinner(teamB, teamA)){
+                score_a.setTextColor(Color.parseColor("#32cd32"))
+                score_b.setTextColor(Color.parseColor("#32cd32"))
+            } else if(checkWinner(teamA, teamB)){
+                score_a.setTextColor(Color.parseColor("#32cd32"))
+                score_b.setTextColor(Color.parseColor("#ff4500"))
+            } else {
+                score_a.setTextColor(Color.parseColor("#ff4500"))
+                score_b.setTextColor(Color.parseColor("#32cd32"))
+            }
         }
 
         score_a.setText(teamA.score.toString())
         score_b.setText(teamB.score.toString())
+    }
+
+    private fun checkWinner(team1: Team, team2: Team): Boolean {
+        return team1.score >= team2.score
     }
 }

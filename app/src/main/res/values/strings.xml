@@ -11,4 +11,5 @@
     <string name="free_throw_a">FREE THROW</string>
     <string name="free_throw_b">FREE THROW</string>
     <string name="reset">RESET</string>
+    <string name="game_over">Game Over</string>
 </resources>
