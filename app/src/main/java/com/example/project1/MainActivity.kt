@@ -41,17 +41,43 @@ class MainActivity : AppCompatActivity() {
 
         add_3_a.setOnClickListener { view: View ->
             teamA.score = teamA.score + 3
-            score_a.setText(teamA.score)
+            score_a.setText(teamA.score.toString())
         }
 
         add_2_a.setOnClickListener { view: View ->
             teamA.score = teamA.score + 2
-            score_a.setText(teamA.score)
+            score_a.setText(teamA.score.toString())
         }
 
         free_throw_a.setOnClickListener { view: View ->
             teamA.score = teamA.score + 1
-            score_a.setText(teamA.score)
+            score_a.setText(teamA.score.toString())
         }
+
+
+        add_3_b.setOnClickListener { view: View ->
+            teamB.score = teamB.score + 3
+            score_b.setText(teamB.score.toString())
+        }
+
+        add_2_b.setOnClickListener { view: View ->
+            teamB.score = teamB.score + 2
+            score_b.setText(teamB.score.toString())
+        }
+
+        free_throw_b.setOnClickListener { view: View ->
+            teamB.score = teamB.score + 1
+            score_b.setText(teamB.score.toString())
+        }
+
+        reset.setOnClickListener { view: View ->
+            teamA.score = 0
+            teamB.score = 0
+            score_a.setText(teamA.score.toString())
+            score_b.setText(teamB.score.toString())
+        }
+
+        score_a.setText(teamA.score.toString())
+        score_b.setText(teamB.score.toString())
     }
 }
