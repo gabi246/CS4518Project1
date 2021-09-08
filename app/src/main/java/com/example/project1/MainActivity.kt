@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var free_throw_b: Button
     private lateinit var reset: Button
     private lateinit var game_over: Button
+    private lateinit var winner_a: TextView
+    private lateinit var winner_b: TextView
 
     private val teamA = Team("Team A", 0, false)
     private val teamB = Team("Team B", 0, false)
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         free_throw_b = findViewById(R.id.free_throw_b)
         reset = findViewById(R.id.reset)
         game_over = findViewById(R.id.game_over)
+        winner_a = findViewById(R.id.winner_a)
+        winner_b = findViewById(R.id.winner_b)
 
         add_3_a.setOnClickListener { view: View ->
             teamA.score = teamA.score + 3
@@ -86,6 +90,8 @@ class MainActivity : AppCompatActivity() {
             add_3_b.setClickable(true)
             add_2_b.setClickable(true)
             free_throw_b.setClickable(true)
+            winner_a.setVisibility(View.INVISIBLE)
+            winner_b.setVisibility(View.INVISIBLE)
         }
 
         game_over.setOnClickListener { view: View ->
@@ -97,13 +103,17 @@ class MainActivity : AppCompatActivity() {
             free_throw_b.setClickable(false)
             if(checkWinner(teamA, teamB) && checkWinner(teamB, teamA)){
                 score_a.setTextColor(Color.parseColor("#32cd32"))
+                winner_a.setVisibility(View.VISIBLE)
                 score_b.setTextColor(Color.parseColor("#32cd32"))
+                winner_b.setVisibility(View.VISIBLE)
             } else if(checkWinner(teamA, teamB)){
                 score_a.setTextColor(Color.parseColor("#32cd32"))
+                winner_a.setVisibility(View.VISIBLE)
                 score_b.setTextColor(Color.parseColor("#ff4500"))
             } else {
                 score_a.setTextColor(Color.parseColor("#ff4500"))
                 score_b.setTextColor(Color.parseColor("#32cd32"))
+                winner_b.setVisibility(View.VISIBLE)
             }
         }
 
