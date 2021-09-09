@@ -6,6 +6,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.view.View
 import android.graphics.Color
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +33,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val provider: ViewModelProvider = ViewModelProviders.of(this)
+        val BBViewModel = provider.get(BBViewModel::class.java)
+        val TAG = "MainActivity Message 1"
+        Log.d(TAG, "Got a QuizViewModel: $BBViewModel")
 
         team_a = findViewById(R.id.team_a)
         score_a = findViewById(R.id.score_a)
