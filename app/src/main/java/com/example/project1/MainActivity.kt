@@ -51,72 +51,72 @@ class MainActivity : AppCompatActivity() {
         winner_b = findViewById(R.id.winner_b)
 
         add_3_a.setOnClickListener { view: View ->
-            score_a.setText(bbViewModel.addPoints("A", 3))
+            score_a.text = bbViewModel.addPoints("A", 3)
         }
 
         add_2_a.setOnClickListener { view: View ->
-            score_a.setText(bbViewModel.addPoints("A", 2))
+            score_a.text = bbViewModel.addPoints("A", 2)
         }
 
         free_throw_a.setOnClickListener { view: View ->
-            score_a.setText(bbViewModel.addPoints("A", 1))
+            score_a.text = bbViewModel.addPoints("A", 1)
         }
 
 
         add_3_b.setOnClickListener { view: View ->
-            score_b.setText(bbViewModel.addPoints("B", 3))
+            score_b.text = bbViewModel.addPoints("B", 3)
         }
 
         add_2_b.setOnClickListener { view: View ->
-            score_b.setText(bbViewModel.addPoints("B", 2))
+            score_b.text = bbViewModel.addPoints("B", 2)
         }
 
         free_throw_b.setOnClickListener { view: View ->
-            score_b.setText(bbViewModel.addPoints("B", 1))
+            score_b.text = bbViewModel.addPoints("B", 1)
         }
 
         reset.setOnClickListener { view: View ->
             bbViewModel.setScore("A", 0)
             bbViewModel.setScore("B", 0)
-            score_a.setText(bbViewModel.getScore("A"))
-            score_b.setText(bbViewModel.getScore("B"))
+            score_a.text = bbViewModel.getScore("A")
+            score_b.text = bbViewModel.getScore("B")
             score_a.setTextColor(Color.parseColor("#000000"))
             score_b.setTextColor(Color.parseColor("#000000"))
-            add_3_a.setClickable(true)
-            add_2_a.setClickable(true)
-            free_throw_a.setClickable(true)
-            add_3_b.setClickable(true)
-            add_2_b.setClickable(true)
-            free_throw_b.setClickable(true)
-            winner_a.setVisibility(View.INVISIBLE)
-            winner_b.setVisibility(View.INVISIBLE)
+            add_3_a.isClickable = true
+            add_2_a.isClickable = true
+            free_throw_a.isClickable = true
+            add_3_b.isClickable = true
+            add_2_b.isClickable = true
+            free_throw_b.isClickable = true
+            winner_a.visibility = View.INVISIBLE
+            winner_b.visibility = View.INVISIBLE
         }
 
         game_over.setOnClickListener { view: View ->
-            add_3_a.setClickable(false)
-            add_2_a.setClickable(false)
-            free_throw_a.setClickable(false)
-            add_3_b.setClickable(false)
-            add_2_b.setClickable(false)
-            free_throw_b.setClickable(false)
+            add_3_a.isClickable = false
+            add_2_a.isClickable = false
+            free_throw_a.isClickable = false
+            add_3_b.isClickable = false
+            add_2_b.isClickable = false
+            free_throw_b.isClickable = false
             if(bbViewModel.checkWinner("A", "B") && bbViewModel.checkWinner("B", "A")){
                 score_a.setTextColor(Color.parseColor("#32cd32"))
-                winner_a.setVisibility(View.VISIBLE)
+                winner_a.visibility = View.VISIBLE
                 score_b.setTextColor(Color.parseColor("#32cd32"))
-                winner_b.setVisibility(View.VISIBLE)
+                winner_b.visibility = View.VISIBLE
             } else if(bbViewModel.checkWinner("A", "B")){
                 score_a.setTextColor(Color.parseColor("#32cd32"))
-                winner_a.setVisibility(View.VISIBLE)
+                winner_a.visibility = View.VISIBLE
                 score_b.setTextColor(Color.parseColor("#ff4500"))
             } else {
                 score_a.setTextColor(Color.parseColor("#ff4500"))
                 score_b.setTextColor(Color.parseColor("#32cd32"))
-                winner_b.setVisibility(View.VISIBLE)
+                winner_b.visibility = View.VISIBLE
             }
         }
 
-        score_a.setText(bbViewModel.getScore("A"))
-        score_b.setText(bbViewModel.getScore("B"))
+        score_a.text = bbViewModel.getScore("A")
+        score_b.text = bbViewModel.getScore("B")
     }
 
 }
