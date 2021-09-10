@@ -27,17 +27,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var winner_a: TextView
     private lateinit var winner_b: TextView
 
-    private val teamA = Team("Team A", 0, false)
-    private val teamB = Team("Team B", 0, false)
+    private val bbViewModel: BBViewModel by lazy {
+        ViewModelProviders.of(this).get(bbViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val provider: ViewModelProvider = ViewModelProviders.of(this)
-        val BBViewModel = provider.get(BBViewModel::class.java)
-        val TAG = "MainActivity Message 1"
-        Log.d(TAG, "Got a QuizViewModel: $BBViewModel")
 
         team_a = findViewById(R.id.team_a)
         score_a = findViewById(R.id.score_a)
@@ -55,41 +51,35 @@ class MainActivity : AppCompatActivity() {
         winner_b = findViewById(R.id.winner_b)
 
         add_3_a.setOnClickListener { view: View ->
-            teamA.score = teamA.score + 3
-            score_a.setText(teamA.score.toString())
+            score_a.setText(bbViewModel.addPoints("A", 3))
         }
 
         add_2_a.setOnClickListener { view: View ->
-            teamA.score = teamA.score + 2
-            score_a.setText(teamA.score.toString())
+            score_a.setText(bbViewModel.addPoints("A", 2))
         }
 
         free_throw_a.setOnClickListener { view: View ->
-            teamA.score = teamA.score + 1
-            score_a.setText(teamA.score.toString())
+            score_a.setText(bbViewModel.addPoints("A", 1))
         }
 
 
         add_3_b.setOnClickListener { view: View ->
-            teamB.score = teamB.score + 3
-            score_b.setText(teamB.score.toString())
+            score_b.setText(bbViewModel.addPoints("B", 3))
         }
 
         add_2_b.setOnClickListener { view: View ->
-            teamB.score = teamB.score + 2
-            score_b.setText(teamB.score.toString())
+            score_b.setText(bbViewModel.addPoints("B", 2))
         }
 
         free_throw_b.setOnClickListener { view: View ->
-            teamB.score = teamB.score + 1
-            score_b.setText(teamB.score.toString())
+            score_b.setText(bbViewModel.addPoints("B", 1))
         }
 
         reset.setOnClickListener { view: View ->
-            teamA.score = 0
-            teamB.score = 0
-            score_a.setText(teamA.score.toString())
-            score_b.setText(teamB.score.toString())
+            bbViewModel.setScore("A", 0)
+            bbViewModel.setScore("B", 0)
+            score_a.setText(bbViewModel.getScore("A"))
+            score_b.setText(bbViewModel.getScore("B"))
             score_a.setTextColor(Color.parseColor("#000000"))
             score_b.setTextColor(Color.parseColor("#000000"))
             add_3_a.setClickable(true)
@@ -109,12 +99,12 @@ class MainActivity : AppCompatActivity() {
             add_3_b.setClickable(false)
             add_2_b.setClickable(false)
             free_throw_b.setClickable(false)
-            if(checkWinner(teamA, teamB) && checkWinner(teamB, teamA)){
+            if(bbViewModel.checkWinner("A", "B") && bbViewModel.checkWinner("B", "A")){
                 score_a.setTextColor(Color.parseColor("#32cd32"))
                 winner_a.setVisibility(View.VISIBLE)
                 score_b.setTextColor(Color.parseColor("#32cd32"))
                 winner_b.setVisibility(View.VISIBLE)
-            } else if(checkWinner(teamA, teamB)){
+            } else if(bbViewModel.checkWinner("A", "B")){
                 score_a.setTextColor(Color.parseColor("#32cd32"))
                 winner_a.setVisibility(View.VISIBLE)
                 score_b.setTextColor(Color.parseColor("#ff4500"))
@@ -125,11 +115,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        score_a.setText(teamA.score.toString())
-        score_b.setText(teamB.score.toString())
+        score_a.setText(bbViewModel.getScore("A"))
+        score_b.setText(bbViewModel.getScore("B"))
     }
 
-    private fun checkWinner(team1: Team, team2: Team): Boolean {
-        return team1.score >= team2.score
-    }
 }
