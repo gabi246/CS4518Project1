@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var winner_b: TextView
 
     private val bbViewModel: BBViewModel by lazy {
-        ViewModelProviders.of(this).get(bbViewModel::class.java)
+        ViewModelProviders.of(this).get(BBViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

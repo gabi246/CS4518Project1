@@ -10,7 +10,7 @@ class BBViewModel : ViewModel() {
     private val teamB = Team("Team B", 0, false)
 
     fun addPoints(team: String, numPoints: Int): String {
-        if(team === "A"){
+        if(team.equals("A")){
             teamA.score = teamA.score + numPoints
             return teamA.score.toString()
         } else{
@@ -20,27 +20,27 @@ class BBViewModel : ViewModel() {
     }
 
     fun checkWinner(team1: String, team2: String): Boolean {
-        if(team1 === "A"){
+        if(team1.equals("A")){
             return teamA.score >= teamB.score
-        } else if (team2 === "A"){
+        } else if (team2.equals("A")){
             return teamB.score >= teamA.score
         }
         return false
     }
 
     fun getScore(team: String): String {
-        if(team === "A"){
+        if(team.equals("A")){
             return teamA.score.toString()
-        } else if (team === "B"){
+        } else if (team.equals("B")){
             return teamB.score.toString()
         }
         return "-1"
     }
 
     fun setScore(team: String, score: Int): Void? {
-        if(team === "A"){
+        if(team.equals("A")){
             teamA.score = score
-        } else if (team === "B"){
+        } else if (team.equals("B")){
             teamB.score = score
         }
         return null
