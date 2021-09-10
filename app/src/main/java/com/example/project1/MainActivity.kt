@@ -10,6 +10,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 
+private const val TAG = "MainActivity"
+private const val KEY_INDEX = "index"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var team_a: TextView
@@ -34,6 +37,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        bbViewModel.currentIndex = currentIndex
 
         team_a = findViewById(R.id.team_a)
         score_a = findViewById(R.id.score_a)
@@ -90,6 +96,8 @@ class MainActivity : AppCompatActivity() {
             free_throw_b.isClickable = true
             winner_a.visibility = View.INVISIBLE
             winner_b.visibility = View.INVISIBLE
+            bbViewModel.setIsWinner("A", false)
+            bbViewModel.setIsWinner("B", false)
         }
 
         game_over.setOnClickListener { view: View ->
@@ -99,24 +107,40 @@ class MainActivity : AppCompatActivity() {
             add_3_b.isClickable = false
             add_2_b.isClickable = false
             free_throw_b.isClickable = false
-            if(bbViewModel.checkWinner("A", "B") && bbViewModel.checkWinner("B", "A")){
-                score_a.setTextColor(Color.parseColor("#32cd32"))
-                winner_a.visibility = View.VISIBLE
-                score_b.setTextColor(Color.parseColor("#32cd32"))
-                winner_b.visibility = View.VISIBLE
-            } else if(bbViewModel.checkWinner("A", "B")){
-                score_a.setTextColor(Color.parseColor("#32cd32"))
-                winner_a.visibility = View.VISIBLE
-                score_b.setTextColor(Color.parseColor("#ff4500"))
-            } else {
-                score_a.setTextColor(Color.parseColor("#ff4500"))
-                score_b.setTextColor(Color.parseColor("#32cd32"))
-                winner_b.visibility = View.VISIBLE
-            }
+            checkWinners()
         }
 
         score_a.text = bbViewModel.getScore("A")
         score_b.text = bbViewModel.getScore("B")
+        checkWinners()
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        Log.i(TAG, "onSaveInstanceState")
+        savedInstanceState.putInt(KEY_INDEX, bbViewModel.currentIndex)
+    }
+
+    private fun checkWinners(): Void? {
+        if(bbViewModel.checkWinner("A", "B") && bbViewModel.checkWinner("B", "A")){
+            score_a.setTextColor(Color.parseColor("#32cd32"))
+            winner_a.visibility = View.VISIBLE
+            bbViewModel.setIsWinner("A", true)
+            score_b.setTextColor(Color.parseColor("#32cd32"))
+            winner_b.visibility = View.VISIBLE
+            bbViewModel.setIsWinner("B", true)
+        } else if(bbViewModel.checkWinner("A", "B")){
+            score_a.setTextColor(Color.parseColor("#32cd32"))
+            winner_a.visibility = View.VISIBLE
+            bbViewModel.setIsWinner("A", true)
+            score_b.setTextColor(Color.parseColor("#ff4500"))
+        } else {
+            score_a.setTextColor(Color.parseColor("#ff4500"))
+            score_b.setTextColor(Color.parseColor("#32cd32"))
+            winner_b.visibility = View.VISIBLE
+            bbViewModel.setIsWinner("B", true)
+        }
+        return null
     }
 
 }

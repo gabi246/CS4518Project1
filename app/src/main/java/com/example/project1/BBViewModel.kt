@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 private const val TAG = "BBViewModel"
 
 class BBViewModel : ViewModel() {
+    var currentIndex = 0
     private val teamA = Team("Team A", 0, false)
     private val teamB = Team("Team B", 0, false)
 
@@ -44,5 +45,23 @@ class BBViewModel : ViewModel() {
             teamB.score = score
         }
         return null
+    }
+
+    fun setIsWinner(team: String, isWinner: Boolean): Void? {
+        if(team.equals("A")){
+            teamA.isWinner = isWinner
+        } else if (team.equals("B")){
+            teamB.isWinner = isWinner
+        }
+        return null
+    }
+
+    fun getIsWinner(team: String): Boolean {
+        if(team.equals("A")){
+            return teamA.isWinner
+        } else if (team.equals("B")){
+            return teamB.isWinner
+        }
+        return false
     }
 }
