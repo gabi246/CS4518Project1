@@ -7,10 +7,12 @@ private const val TAG = "BBViewModel"
 
 class BBViewModel : ViewModel() {
     var currentIndex = 0
+    var isGameOverCalled = false
     private val teamA = Team("Team A", 0, false)
     private val teamB = Team("Team B", 0, false)
 
     fun addPoints(team: String, numPoints: Int): String {
+        Log.i(TAG, "addPoints in BBViewModel")
         if(team.equals("A")){
             teamA.score = teamA.score + numPoints
             return teamA.score.toString()
@@ -21,6 +23,7 @@ class BBViewModel : ViewModel() {
     }
 
     fun checkWinner(team1: String, team2: String): Boolean {
+        Log.i(TAG, "checkWinner in BBViewModel")
         if(team1.equals("A")){
             return teamA.score >= teamB.score
         } else if (team2.equals("A")){
@@ -30,6 +33,7 @@ class BBViewModel : ViewModel() {
     }
 
     fun getScore(team: String): String {
+        Log.i(TAG, "getScore in BBViewModel")
         if(team.equals("A")){
             return teamA.score.toString()
         } else if (team.equals("B")){
@@ -39,6 +43,7 @@ class BBViewModel : ViewModel() {
     }
 
     fun setScore(team: String, score: Int): Void? {
+        Log.i(TAG, "setScore in BBViewModel")
         if(team.equals("A")){
             teamA.score = score
         } else if (team.equals("B")){
@@ -48,6 +53,7 @@ class BBViewModel : ViewModel() {
     }
 
     fun setIsWinner(team: String, isWinner: Boolean): Void? {
+        Log.i(TAG, "setIsWinner in BBViewModel")
         if(team.equals("A")){
             teamA.isWinner = isWinner
         } else if (team.equals("B")){
@@ -57,11 +63,21 @@ class BBViewModel : ViewModel() {
     }
 
     fun getIsWinner(team: String): Boolean {
+        Log.i(TAG, "getIsWinner in BBViewModel")
         if(team.equals("A")){
             return teamA.isWinner
         } else if (team.equals("B")){
             return teamB.isWinner
         }
         return false
+    }
+
+    fun setIsGameOverCalled(value: Boolean): Void? {
+        isGameOverCalled = value
+        return null
+    }
+
+    fun getIsGameOverCalled(): Boolean {
+        return isGameOverCalled
     }
 }

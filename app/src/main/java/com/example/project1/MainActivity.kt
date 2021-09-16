@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i(TAG, "onCreate")
         setContentView(R.layout.activity_main)
 
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
@@ -58,27 +59,33 @@ class MainActivity : AppCompatActivity() {
 
         add_3_a.setOnClickListener { view: View ->
             score_a.text = bbViewModel.addPoints("A", 3)
+            Log.i(TAG, "onClickListener for add_3_a")
         }
 
         add_2_a.setOnClickListener { view: View ->
             score_a.text = bbViewModel.addPoints("A", 2)
+            Log.i(TAG, "onClickListener for add_2_a")
         }
 
         free_throw_a.setOnClickListener { view: View ->
             score_a.text = bbViewModel.addPoints("A", 1)
+            Log.i(TAG, "onClickListener for free_throw_a")
         }
 
 
         add_3_b.setOnClickListener { view: View ->
             score_b.text = bbViewModel.addPoints("B", 3)
+            Log.i(TAG, "onClickListener for add_3_b")
         }
 
         add_2_b.setOnClickListener { view: View ->
             score_b.text = bbViewModel.addPoints("B", 2)
+            Log.i(TAG, "onClickListener for add_2_b")
         }
 
         free_throw_b.setOnClickListener { view: View ->
             score_b.text = bbViewModel.addPoints("B", 1)
+            Log.i(TAG, "onClickListener for free_throw_b")
         }
 
         reset.setOnClickListener { view: View ->
@@ -88,31 +95,28 @@ class MainActivity : AppCompatActivity() {
             score_b.text = bbViewModel.getScore("B")
             score_a.setTextColor(Color.parseColor("#000000"))
             score_b.setTextColor(Color.parseColor("#000000"))
-            add_3_a.isClickable = true
-            add_2_a.isClickable = true
-            free_throw_a.isClickable = true
-            add_3_b.isClickable = true
-            add_2_b.isClickable = true
-            free_throw_b.isClickable = true
+            makeClickable()
             winner_a.visibility = View.INVISIBLE
             winner_b.visibility = View.INVISIBLE
             bbViewModel.setIsWinner("A", false)
             bbViewModel.setIsWinner("B", false)
+            bbViewModel.setIsGameOverCalled(false)
+            Log.i(TAG, "onClickListener for reset")
         }
 
         game_over.setOnClickListener { view: View ->
-            add_3_a.isClickable = false
-            add_2_a.isClickable = false
-            free_throw_a.isClickable = false
-            add_3_b.isClickable = false
-            add_2_b.isClickable = false
-            free_throw_b.isClickable = false
             checkWinners()
+            bbViewModel.setIsGameOverCalled(true)
+            Log.i(TAG, "onClickListener for game_over")
         }
 
         score_a.text = bbViewModel.getScore("A")
         score_b.text = bbViewModel.getScore("B")
-        checkWinners()
+        if(bbViewModel.getIsGameOverCalled()) {
+            checkWinners()
+        } else {
+            makeClickable()
+        }
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
@@ -140,6 +144,29 @@ class MainActivity : AppCompatActivity() {
             winner_b.visibility = View.VISIBLE
             bbViewModel.setIsWinner("B", true)
         }
+        if(bbViewModel.getIsWinner("A") || bbViewModel.getIsWinner("B")){
+            makeNotClickable()
+        }
+        return null
+    }
+
+    private fun makeClickable(): Void? {
+        add_3_a.isClickable = true
+        add_2_a.isClickable = true
+        free_throw_a.isClickable = true
+        add_3_b.isClickable = true
+        add_2_b.isClickable = true
+        free_throw_b.isClickable = true
+        return null
+    }
+
+    private fun makeNotClickable(): Void? {
+        add_3_a.isClickable = false
+        add_2_a.isClickable = false
+        free_throw_a.isClickable = false
+        add_3_b.isClickable = false
+        add_2_b.isClickable = false
+        free_throw_b.isClickable = false
         return null
     }
 
