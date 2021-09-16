@@ -163,6 +163,6 @@
         android:backgroundTint="#ffc862"
         android:textColor="@android:color/black"
         android:text="@string/save"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
 </LinearLayout>

@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             makeClickable()
             winner_a.visibility = View.INVISIBLE
             winner_b.visibility = View.INVISIBLE
-//            save_button.visibility = View.INVISIBLE
+            save_button.visibility = View.INVISIBLE
             bbViewModel.setIsWinner("A", false)
             bbViewModel.setIsWinner("B", false)
             bbViewModel.setIsGameOverCalled(false)
