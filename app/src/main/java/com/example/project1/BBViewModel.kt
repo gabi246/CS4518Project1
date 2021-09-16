@@ -80,4 +80,22 @@ class BBViewModel : ViewModel() {
     fun getIsGameOverCalled(): Boolean {
         return isGameOverCalled
     }
+
+    fun setTeamAName(name: String): Void? {
+        teamA.name = name
+        return null
+    }
+
+    fun setTeamBName(name: String): Void? {
+        teamB.name = name
+        return null
+    }
+
+    fun getTeamAName(): String {
+        return teamA.name
+    }
+
+    fun getTeamBName(): String {
+        return teamB.name
+    }
 }

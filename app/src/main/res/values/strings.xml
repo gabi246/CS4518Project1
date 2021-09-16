@@ -18,4 +18,6 @@
     <string name="save">Save</string>
     <string name="new_game">New Game</string>
     <string name="history_games">Game History</string>
+    <string name="team_a_name">Team A Name:</string>
+    <string name="team_b_name">Team B Name:</string>
 </resources>

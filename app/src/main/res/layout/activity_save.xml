@@ -38,6 +38,38 @@
             android:text="@string/name_of_app"
             android:textColor="#5d5d5d" />
 
+        <TextView
+            android:id="@+id/team_a_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
+            android:text="@string/team_a_name"
+            android:textColor="#5d5d5d" />
+
+        <EditText
+            android:id="@+id/team_a_input"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/team_b_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginVertical="10dp"
+            android:textSize="16sp"
+            android:text="@string/team_b_name"
+            android:textColor="#5d5d5d" />
+
+        <EditText
+            android:id="@+id/team_b_input"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+
         <Button
             android:id="@+id/new_game"
             android:layout_width="150dp"
