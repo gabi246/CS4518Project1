@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android: android:layout_margin="30dp"
+            android:layout_margin="30dp"
             android:textSize="40sp"
             android:text="@string/name_of_app"
             android:textColor="#5d5d5d" />
