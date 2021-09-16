@@ -15,6 +15,7 @@
     <string name="winner">Winner!</string>
     <string name="name_of_app">Basketball App</string>
     <string name="saved">Game Info Saved</string>
+    <string name="save">Save</string>
     <string name="new_game">New Game</string>
     <string name="history_games">Game History</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.project1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var free_throw_b: Button
     private lateinit var reset: Button
     private lateinit var game_over: Button
+    private lateinit var save_button: Button
     private lateinit var winner_a: TextView
     private lateinit var winner_b: TextView
 
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         free_throw_b = findViewById(R.id.free_throw_b)
         reset = findViewById(R.id.reset)
         game_over = findViewById(R.id.game_over)
+        save_button = findViewById(R.id.save_button)
         winner_a = findViewById(R.id.winner_a)
         winner_b = findViewById(R.id.winner_b)
 
@@ -98,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             makeClickable()
             winner_a.visibility = View.INVISIBLE
             winner_b.visibility = View.INVISIBLE
+//            save_button.visibility = View.INVISIBLE
             bbViewModel.setIsWinner("A", false)
             bbViewModel.setIsWinner("B", false)
             bbViewModel.setIsGameOverCalled(false)
@@ -108,6 +112,12 @@ class MainActivity : AppCompatActivity() {
             checkWinners()
             bbViewModel.setIsGameOverCalled(true)
             Log.i(TAG, "onClickListener for game_over")
+        }
+
+        save_button.setOnClickListener { view: View ->
+            val intent = Intent(this, SaveActivity::class.java)
+            startActivity(intent)
+            Log.i(TAG, "onClickListener for save_button")
         }
 
         score_a.text = bbViewModel.getScore("A")
@@ -126,6 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkWinners(): Void? {
+        save_button.visibility = View.VISIBLE
         if(bbViewModel.checkWinner("A", "B") && bbViewModel.checkWinner("B", "A")){
             score_a.setTextColor(Color.parseColor("#32cd32"))
             winner_a.visibility = View.VISIBLE
