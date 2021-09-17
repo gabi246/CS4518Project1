@@ -49,6 +49,16 @@ class MainActivity : AppCompatActivity() {
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
         bbViewModel.currentIndex = currentIndex
 
+        val currentFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container)
+        if (currentFragment == null) {
+            val fragment = MainFragment()
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container, fragment)
+                .commit()
+        }
+
         team_a = findViewById(R.id.team_a)
         score_a = findViewById(R.id.score_a)
         add_3_a = findViewById(R.id.add_3_a)

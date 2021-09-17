@@ -1,5 +1,7 @@
 package com.example.project1
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +11,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import com.example.project1.com.example.project1.Game
 
 private const val TAG = "MainFragment"
+private const val KEY_INDEX = "index"
+private const val EXTRA_TEAM_A_NAME =
+    "com.example.project1.team_a_name"
+private const val EXTRA_TEAM_B_NAME =
+    "com.example.project1.team_b_name"
 
 class MainFragment : Fragment() {
     private lateinit var game: Game
@@ -30,8 +39,14 @@ class MainFragment : Fragment() {
     private lateinit var winner_a: TextView
     private lateinit var winner_b: TextView
 
+    private val bbViewModel: BBViewModel by lazy {
+        ViewModelProviders.of(this).get(BBViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        bbViewModel.currentIndex = currentIndex
         game = Game()
     }
 
@@ -120,7 +135,7 @@ class MainFragment : Fragment() {
 
         save_button.setOnClickListener { view: View ->
             val show_save = bbViewModel.getIsGameOverCalled()
-            val intent = SaveActivity.newIntent(this@MainActivity, show_save)
+            val intent = SaveActivity.newIntent(this@MainFragment, show_save)
             startActivity(intent)
             Log.i(TAG, "onClickListener for save_button")
         }
@@ -183,5 +198,20 @@ class MainFragment : Fragment() {
         add_2_b.isClickable = false
         free_throw_b.isClickable = false
         return null
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        Log.i(TAG, "onSaveInstanceState")
+        savedInstanceState.putInt(KEY_INDEX, bbViewModel.currentIndex)
+    }
+
+    companion object {
+        fun newIntent(packageContext: Context, team_a_name: String, team_b_name: String): Intent {
+            return Intent(packageContext, MainActivity::class.java).apply {
+                putExtra(EXTRA_TEAM_A_NAME, team_a_name)
+                putExtra(EXTRA_TEAM_B_NAME, team_b_name)
+            }
+        }
     }
 }
