@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.activityViewModels
 import com.example.project1.com.example.project1.Game
 
 private const val TAG = "MainFragment"
@@ -39,14 +40,10 @@ class MainFragment : Fragment() {
     private lateinit var winner_a: TextView
     private lateinit var winner_b: TextView
 
-    private val bbViewModel: BBViewModel by lazy {
-        ViewModelProviders.of(this).get(BBViewModel::class.java)
-    }
+    private val bbViewModel: BBViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
-        bbViewModel.currentIndex = currentIndex
         game = Game()
     }
 
@@ -135,15 +132,15 @@ class MainFragment : Fragment() {
 
         save_button.setOnClickListener { view: View ->
             val show_save = bbViewModel.getIsGameOverCalled()
-            val intent = SaveActivity.newIntent(this@MainFragment, show_save)
-            startActivity(intent)
+//            val intent = SaveActivity.newIntent(this@MainFragment, show_save)
+//            startActivity(intent)
             Log.i(TAG, "onClickListener for save_button")
         }
 
         score_a.text = bbViewModel.getScore("A")
         score_b.text = bbViewModel.getScore("B")
-        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
-        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
+//        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
+//        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
         team_a.text = bbViewModel.getTeamAName()
         team_b.text = bbViewModel.getTeamBName()
         if(bbViewModel.getIsGameOverCalled()) {
