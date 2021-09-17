@@ -120,7 +120,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         save_button.setOnClickListener { view: View ->
-            val intent = Intent(this, SaveActivity::class.java)
+            val show_save = bbViewModel.getIsGameOverCalled()
+            val intent = SaveActivity.newIntent(this@MainActivity, show_save)
             startActivity(intent)
             Log.i(TAG, "onClickListener for save_button")
         }
