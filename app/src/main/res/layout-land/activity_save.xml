@@ -56,6 +56,7 @@
                 android:id="@+id/team_a_input"
                 android:layout_height="wrap_content"
                 android:layout_width="170dp"
+                android:hint="@string/team_a_name_hint"
                 android:inputType="text"/>
 
             <TextView
@@ -72,6 +73,7 @@
                 android:id="@+id/team_b_input"
                 android:layout_height="wrap_content"
                 android:layout_width="170dp"
+                android:hint="@string/team_a_name_hint"
                 android:inputType="text"/>
         </LinearLayout>
         <LinearLayout
