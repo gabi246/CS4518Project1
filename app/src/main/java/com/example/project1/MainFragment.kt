@@ -45,6 +45,8 @@ class MainFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         game = Game()
+        val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
+        bbViewModel.currentIndex = currentIndex
     }
 
     override fun onCreateView(
