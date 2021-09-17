@@ -20,4 +20,6 @@
     <string name="history_games">Game History</string>
     <string name="team_a_name">Team A Name:</string>
     <string name="team_b_name">Team B Name:</string>
+    <string name="team_a_name_hint">Team A Name</string>
+    <string name="team_b_name_hint">Team B Name</string>
 </resources>
