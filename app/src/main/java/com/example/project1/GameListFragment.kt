@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -67,6 +68,7 @@ class GameListFragment : Fragment() {
         private val dateTextView: TextView = itemView.findViewById(R.id.game_date)
         private val teamsTextView: TextView = itemView.findViewById(R.id.game_teams)
         private val scoresTextView: TextView = itemView.findViewById(R.id.game_scores)
+        private val iconImageView: ImageView = itemView.findViewById(R.id.game_icon)
 
         fun bind(game: Game) {
             this.game = game
@@ -74,6 +76,11 @@ class GameListFragment : Fragment() {
             dateTextView.text = this.game.date.toString()
             teamsTextView.text = this.game.teamA.name.toString().plus(" : ").plus(this.game.teamB.name.toString())
             scoresTextView.text = this.game.teamA.score.toString().plus(" : ").plus(this.game.teamB.score.toString())
+            if(this.game.teamA.isWinner){
+                iconImageView.setImageResource(R.drawable.parrot)
+            } else if(this.game.teamB.isWinner){
+                iconImageView.setImageResource(R.drawable.pirate)
+            }
         }
     }
 
