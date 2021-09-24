@@ -2,7 +2,6 @@ package com.example.project1
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.project1.com.example.project1.Game
 
 private const val TAG = "BBViewModel"
 
