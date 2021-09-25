@@ -147,20 +147,37 @@
         android:text="@string/reset"
         />
 
-    <Button
-        android:id="@+id/game_over"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="#ffc862"
-        android:textColor="@android:color/black"
-        android:text="@string/game_over" />
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingLeft="20dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/game_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#ffc862"
+            android:textColor="@android:color/black"
+            android:text="@string/game_over"
+            android:layout_marginRight="20dp"/>
+        <Button
+            android:id="@+id/display_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#ffc862"
+            android:textColor="@android:color/black"
+            android:text="@string/display" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#ffc862"
         android:textColor="@android:color/black"
         android:text="@string/save"

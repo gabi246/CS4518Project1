@@ -163,6 +163,17 @@
         android:layout_gravity="center|left" />
 
     <Button
+        android:id="@+id/display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:backgroundTint="#ffc862"
+        android:textColor="@android:color/black"
+        android:text="@string/display"
+        android:layout_gravity="center|left"
+        android:layout_marginTop="60dp"/>
+
+    <Button
         android:id="@+id/game_over"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

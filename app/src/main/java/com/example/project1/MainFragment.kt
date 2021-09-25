@@ -132,8 +132,8 @@ class MainFragment : Fragment() {
 
         save_button.setOnClickListener { view: View ->
             val show_save = bbViewModel.getIsGameOverCalled()
-//            val intent = SaveActivity.newIntent(this@MainFragment, show_save)
-//            startActivity(intent)
+            val intent = SaveActivity.newIntent(this@MainFragment, show_save)
+            startActivity(intent)
             Log.i(TAG, "onClickListener for save_button")
         }
 

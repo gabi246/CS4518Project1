@@ -11,6 +11,7 @@ import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import java.util.*
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
@@ -19,7 +20,8 @@ private const val EXTRA_TEAM_A_NAME =
 private const val EXTRA_TEAM_B_NAME =
     "com.example.project1.team_b_name"
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    GameListFragment.Callbacks {
 
     private val bbViewModel: BBViewModel by lazy {
         ViewModelProviders.of(this).get(BBViewModel::class.java)
@@ -39,13 +41,21 @@ class MainActivity : AppCompatActivity() {
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container)
         if (currentFragment == null) {
-//            val fragment = MainFragment()
-            val fragment = GameListFragment.newInstance()
+            val fragment = MainFragment()
+//            val fragment = GameListFragment.newInstance()
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)
                 .commit()
         }
+    }
+
+    override fun onGameSelected(gameId: UUID) {
+        val fragment = MainFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
