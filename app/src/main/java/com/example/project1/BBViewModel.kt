@@ -2,20 +2,13 @@ package com.example.project1
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.project1.com.example.project1.Game
 
 private const val TAG = "BBViewModel"
 
 class BBViewModel : ViewModel() {
-    val games = mutableListOf<Game>()
+    private val gameRepository = GameRepository.get()
+    val gameListLiveData = gameRepository.getGames()
 
-    init {
-        for (i in 0 until 100) {
-            val game = Game()
-            game.title = "Game #$i"
-            games += game
-        }
-    }
     var currentIndex = 0
     var isGameOverCalled = false
     private val teamA = Team("Team A", 0, false)

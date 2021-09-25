@@ -5,31 +5,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project1.com.example.project1.Game
 
 private const val TAG = "GameListFragment"
 
 class GameListFragment : Fragment() {
 
     private lateinit var gameRecyclerView: RecyclerView
-    private var adapter: GameAdapter? = null
+    private var adapter: GameAdapter? = GameAdapter(emptyList())
 
 //    private val bbViewModel: BBViewModel by lazy {
 //        ViewModelProviders.of(this).get(BBViewModel::class.java)
 //    }
 
     private val bbViewModel: BBViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "Total games: ${bbViewModel.games.size}")
-    }
 
     companion object {
         fun newInstance(): GameListFragment {
@@ -47,14 +42,25 @@ class GameListFragment : Fragment() {
             view.findViewById(R.id.game_recycler_view) as RecyclerView
         gameRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        updateUI()
+        gameRecyclerView.adapter = adapter
 
         return view
     }
 
-    private fun updateUI() {
-        val crimes = bbViewModel.games
-        adapter = GameAdapter(crimes)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bbViewModel.gameListLiveData.observe(
+            viewLifecycleOwner,
+            Observer { games ->
+                games?.let {
+                    Log.i(TAG, "Got games ${games.size}")
+                    updateUI(games)
+                }
+        })
+    }
+
+    private fun updateUI(games: List<Game>) {
+        adapter = GameAdapter(games)
         gameRecyclerView.adapter = adapter
     }
 
@@ -67,6 +73,7 @@ class GameListFragment : Fragment() {
         private val dateTextView: TextView = itemView.findViewById(R.id.game_date)
         private val teamsTextView: TextView = itemView.findViewById(R.id.game_teams)
         private val scoresTextView: TextView = itemView.findViewById(R.id.game_scores)
+        private val iconImageView: ImageView = itemView.findViewById(R.id.game_icon)
 
         fun bind(game: Game) {
             this.game = game
@@ -74,6 +81,11 @@ class GameListFragment : Fragment() {
             dateTextView.text = this.game.date.toString()
             teamsTextView.text = this.game.teamA.name.toString().plus(" : ").plus(this.game.teamB.name.toString())
             scoresTextView.text = this.game.teamA.score.toString().plus(" : ").plus(this.game.teamB.score.toString())
+            if(this.game.teamA.isWinner){
+                iconImageView.setImageResource(R.drawable.parrot)
+            } else if(this.game.teamB.isWinner){
+                iconImageView.setImageResource(R.drawable.pirate)
+            }
         }
     }
 

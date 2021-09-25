@@ -1,9 +1,12 @@
-package com.example.project1.com.example.project1
+package com.example.project1
 
-import com.example.project1.Team
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-data class Game(var teamA: Team = Team("Team A", 0, false),
+@Entity
+data class Game(@PrimaryKey val id: UUID = UUID.randomUUID(),
+                var teamA: Team = Team("Team A", 0, false),
                 var teamB: Team = Team("Team B", 0, false),
                 var date: Date = Date(),
                 var title: String = ""
