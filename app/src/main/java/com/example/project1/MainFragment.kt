@@ -49,6 +49,13 @@ class MainFragment : Fragment() {
 
     private val bbViewModel: BBViewModel by activityViewModels()
 
+    companion object {
+        fun newInstance(): MainFragment {
+            return MainFragment()
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         game = Game()
@@ -155,15 +162,15 @@ class MainFragment : Fragment() {
 
         save_button.setOnClickListener { view: View ->
             val show_save = bbViewModel.getIsGameOverCalled()
-//            val intent = SaveActivity.newIntent(this@MainFragment, show_save)
-//            startActivity(intent)
+            val intent = SaveActivity.newIntent(this@MainFragment.requireContext(), show_save)
+           startActivity(intent)
             Log.i(TAG, "onClickListener for save_button")
         }
 
         score_a.text = bbViewModel.getScore("A")
         score_b.text = bbViewModel.getScore("B")
-//        intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
-//        intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
+  //      intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
+   //     intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
         team_a.text = bbViewModel.getTeamAName()
         team_b.text = bbViewModel.getTeamBName()
         if(bbViewModel.getIsGameOverCalled()) {
@@ -255,13 +262,5 @@ class MainFragment : Fragment() {
         Log.i(TAG, "onSaveInstanceState")
         savedInstanceState.putInt(KEY_INDEX, bbViewModel.currentIndex)
     }
-
-//    companion object {
-//        fun newIntent(packageContext: Context, team_a_name: String, team_b_name: String): Intent {
-//            return Intent(packageContext, MainActivity::class.java).apply {
-//                putExtra(EXTRA_TEAM_A_NAME, team_a_name)
-//                putExtra(EXTRA_TEAM_B_NAME, team_b_name)
-//            }
-//        }
-//    }
+    
 }
