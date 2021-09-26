@@ -174,6 +174,11 @@ class MainFragment : Fragment() {
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        bbDetailViewModel.saveGame(game)
+    }
+
     private fun updateUI() {
         //Not sure about this stuff
         team_a.text = game.teamA.name

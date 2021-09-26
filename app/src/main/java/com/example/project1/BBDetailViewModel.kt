@@ -18,4 +18,8 @@ class BBDetailViewModel() : ViewModel() {
     fun loadGame(gameId: UUID) {
         gameIdLiveData.value = gameId
     }
+
+    fun saveGame(game: Game) {
+        gameRepository.updateGame(game)
+    }
 }
