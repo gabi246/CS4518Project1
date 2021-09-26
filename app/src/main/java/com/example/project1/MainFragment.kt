@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProviders
 import java.util.*
 
 private const val TAG = "MainFragment"
@@ -41,11 +42,17 @@ class MainFragment : Fragment() {
     private lateinit var winner_a: TextView
     private lateinit var winner_b: TextView
 
+    private val bbDetailViewModel: BBDetailViewModel by lazy {
+        ViewModelProviders.of(this).get(BBDetailViewModel::class.java)
+    }
+
     private val bbViewModel: BBViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         game = Game()
+        val gameId: UUID = arguments?.getSerializable(ARG_GAME_ID) as UUID
+        bbDetailViewModel.loadGame(gameId)
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
         bbViewModel.currentIndex = currentIndex
     }
