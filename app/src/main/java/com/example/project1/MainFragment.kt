@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import java.util.*
 
 private const val TAG = "MainFragment"
@@ -81,6 +82,18 @@ class MainFragment : Fragment() {
         winner_b = view.findViewById(R.id.winner_b)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bbDetailViewModel.gameLiveData.observe(
+            viewLifecycleOwner,
+            Observer { game ->
+                game?.let {
+                    this.game = game
+                    updateUI()
+                }
+            })
     }
 
     override fun onStart() {
@@ -159,6 +172,20 @@ class MainFragment : Fragment() {
             makeClickable()
         }
 
+    }
+
+    private fun updateUI() {
+        //Not sure about this stuff
+        team_a.text = game.teamA.name
+        team_b.text = game.teamB.name
+        score_a.text = game.teamA.score.toString()
+        score_b.text = game.teamB.score.toString()
+
+        if((game.teamA.isWinner) || (game.teamB.isWinner)) {
+            checkWinners()
+        } else {
+            makeClickable()
+        }
     }
 
     companion object {
