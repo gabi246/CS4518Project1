@@ -1,5 +1,6 @@
 package com.example.project1
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,10 +13,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
 private const val TAG = "GameListFragment"
 
 class GameListFragment : Fragment() {
+    /**
+     * Required interface for hosting activities */
+    interface Callbacks {
+        fun onGameSelected(gameId: UUID)
+    }
+    private var callbacks: Callbacks? = null
 
     private lateinit var gameRecyclerView: RecyclerView
     private var adapter: GameAdapter? = GameAdapter(emptyList())
@@ -30,6 +38,11 @@ class GameListFragment : Fragment() {
         fun newInstance(): GameListFragment {
             return GameListFragment()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
     }
 
     override fun onCreateView(
@@ -59,13 +72,18 @@ class GameListFragment : Fragment() {
         })
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        callbacks = null
+    }
+
     private fun updateUI(games: List<Game>) {
         adapter = GameAdapter(games)
         gameRecyclerView.adapter = adapter
     }
 
     private inner class GameHolder(view: View)
-        : RecyclerView.ViewHolder(view) {
+        : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private lateinit var game: Game
 
@@ -87,6 +105,9 @@ class GameListFragment : Fragment() {
                 iconImageView.setImageResource(R.drawable.pirate)
             }
         }
+
+        override fun onClick(v: View?) {
+            callbacks?.onGameSelected(game.id) }
     }
 
     private inner class GameAdapter(var games: List<Game>)

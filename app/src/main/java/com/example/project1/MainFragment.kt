@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import java.util.*
 
 private const val TAG = "MainFragment"
 private const val KEY_INDEX = "index"
@@ -19,6 +20,8 @@ private const val EXTRA_TEAM_A_NAME =
     "com.example.project1.team_a_name"
 private const val EXTRA_TEAM_B_NAME =
     "com.example.project1.team_b_name"
+
+private const val ARG_GAME_ID = "game_id"
 
 class MainFragment : Fragment() {
     private lateinit var game: Game
@@ -151,6 +154,17 @@ class MainFragment : Fragment() {
 
     }
 
+    companion object {
+        fun newInstance(gameId: UUID): MainFragment {
+            val args = Bundle().apply {
+                putSerializable(ARG_GAME_ID, gameId)
+            }
+            return MainFragment().apply {
+                arguments = args
+            }
+        }
+    }
+
     private fun checkWinners(): Void? {
         save_button.visibility = View.VISIBLE
         if(bbViewModel.checkWinner("A", "B") && bbViewModel.checkWinner("B", "A")){
@@ -203,12 +217,12 @@ class MainFragment : Fragment() {
         savedInstanceState.putInt(KEY_INDEX, bbViewModel.currentIndex)
     }
 
-    companion object {
-        fun newIntent(packageContext: Context, team_a_name: String, team_b_name: String): Intent {
-            return Intent(packageContext, MainActivity::class.java).apply {
-                putExtra(EXTRA_TEAM_A_NAME, team_a_name)
-                putExtra(EXTRA_TEAM_B_NAME, team_b_name)
-            }
-        }
-    }
+//    companion object {
+//        fun newIntent(packageContext: Context, team_a_name: String, team_b_name: String): Intent {
+//            return Intent(packageContext, MainActivity::class.java).apply {
+//                putExtra(EXTRA_TEAM_A_NAME, team_a_name)
+//                putExtra(EXTRA_TEAM_B_NAME, team_b_name)
+//            }
+//        }
+//    }
 }
