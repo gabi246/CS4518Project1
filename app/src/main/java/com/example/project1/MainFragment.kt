@@ -49,13 +49,6 @@ class MainFragment : Fragment() {
 
     private val bbViewModel: BBViewModel by activityViewModels()
 
-    companion object {
-        fun newInstance(): MainFragment {
-            return MainFragment()
-        }
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         game = Game()
@@ -169,8 +162,6 @@ class MainFragment : Fragment() {
 
         score_a.text = bbViewModel.getScore("A")
         score_b.text = bbViewModel.getScore("B")
-  //      intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
-   //     intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
         team_a.text = bbViewModel.getTeamAName()
         team_b.text = bbViewModel.getTeamBName()
         if(bbViewModel.getIsGameOverCalled()) {
