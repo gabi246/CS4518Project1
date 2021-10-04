@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import java.io.File
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
     private val bbViewModel: BBViewModel by lazy {
         ViewModelProviders.of(this).get(BBViewModel::class.java)
     }
+
+    private val filesDir = context.applicationContext.filesDir
+
+    fun getPhotoFile(team: Team): File = File(filesDir, team.name)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
