@@ -2,6 +2,8 @@ package com.example.project1
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.project1.com.example.project1.Game
+import java.io.File
 
 private const val TAG = "BBViewModel"
 
@@ -10,6 +12,7 @@ class BBViewModel : ViewModel() {
     var isGameOverCalled = false
     private val teamA = Team("Team A", 0, false)
     private val teamB = Team("Team B", 0, false)
+    private val gameRepository = GameRepository.get()
 
     fun addPoints(team: String, numPoints: Int): String {
         Log.i(TAG, "addPoints in BBViewModel")
@@ -97,5 +100,13 @@ class BBViewModel : ViewModel() {
 
     fun getTeamBName(): String {
         return teamB.name
+    }
+
+    fun getTeamAPhotoFile(game: Game): File {
+        return gameRepository.getTeamAPhotoFile(game)
+    }
+
+    fun getTeamBPhotoFile(game: Game): File {
+        return gameRepository.getTeamBPhotoFile(game)
     }
 }
