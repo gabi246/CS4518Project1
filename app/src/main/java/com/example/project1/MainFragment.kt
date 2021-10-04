@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -25,11 +27,15 @@ private const val EXTRA_TEAM_B_NAME =
 class MainFragment : Fragment() {
     private lateinit var game: Game
     private lateinit var team_a: TextView
+    private lateinit var teama_camera: ImageButton
+    private lateinit var teama_photo: ImageView
     private lateinit var score_a: TextView
     private lateinit var add_3_a: Button
     private lateinit var add_2_a: Button
     private lateinit var free_throw_a: Button
     private lateinit var team_b: TextView
+    private lateinit var teamb_camera: ImageButton
+    private lateinit var teamb_photo: ImageView
     private lateinit var score_b: TextView
     private lateinit var add_3_b: Button
     private lateinit var add_2_b: Button
@@ -55,11 +61,15 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
         team_a = view.findViewById(R.id.team_a)
+        teama_camera = view.findViewById(R.id.teama_camera) as ImageButton
+        teama_photo = view.findViewById(R.id.teama_photo) as ImageView
         score_a = view.findViewById(R.id.score_a)
         add_3_a = view.findViewById(R.id.add_3_a)
         add_2_a = view.findViewById(R.id.add_2_a)
         free_throw_a = view.findViewById(R.id.free_throw_a)
         team_b = view.findViewById(R.id.team_b)
+        teamb_camera = view.findViewById(R.id.teamb_camera) as ImageButton
+        teamb_photo = view.findViewById(R.id.teamb_photo) as ImageView
         score_b = view.findViewById(R.id.score_b)
         add_3_b = view.findViewById(R.id.add_3_b)
         add_2_b = view.findViewById(R.id.add_2_b)
