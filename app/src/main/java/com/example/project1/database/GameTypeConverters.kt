@@ -35,10 +35,10 @@ class GameTypeConverters {
     @TypeConverter
     fun toTeam(team: String): Team? {
         var total = team.split(":")
-        return Team(total[0], total[1].toInt(), total[2].toBoolean())
+        return Team(UUID.fromString(total[0]),total[1], total[2].toInt(), total[3].toBoolean())
     }
     @TypeConverter
     fun fromTeam(team: Team): String? {
-        return team.name.toString().plus(":").plus(team.score.toString()).plus(":").plus(team.isWinner.toString())
+        return team.id.toString().plus(":").plus(team.name).plus(":").plus(team.score.toString()).plus(":").plus(team.isWinner.toString())
     }
 }
