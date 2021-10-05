@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="16dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -32,13 +33,37 @@
                 android:visibility="invisible"
                 android:text="@string/winner" />
 
-            <TextView
-                android:id="@+id/team_a"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#5d5d5d"
-                android:text="@string/team_a" />
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/team_a"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="#5d5d5d"
+                        android:text="@string/team_a" />
+                    <ImageView
+                        android:id="@+id/teama_photo"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        android:cropToPadding="true"
+                        android:background="@android:color/darker_gray"/>
+                    <ImageButton
+                        android:id="@+id/teama_camera"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_camera"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/score_a"
@@ -92,13 +117,37 @@
                 android:visibility="invisible"
                 android:text="@string/winner" />
 
-            <TextView
-                android:id="@+id/team_b"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#5d5d5d"
-                android:text="@string/team_b" />
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/team_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="#5d5d5d"
+                        android:text="@string/team_b" />
+                    <ImageView
+                        android:id="@+id/teamb_photo"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerInside"
+                        android:cropToPadding="true"
+                        android:background="@android:color/darker_gray"/>
+                    <ImageButton
+                        android:id="@+id/teamb_camera"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_camera"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/score_b"
@@ -143,7 +192,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#c2c2c2"
         android:textColor="@android:color/black"
-        android:text="@string/reset" />
+        android:text="@string/reset"
+        />
 
     <Button
         android:id="@+id/game_over"
@@ -153,5 +203,15 @@
         android:backgroundTint="#ffc862"
         android:textColor="@android:color/black"
         android:text="@string/game_over" />
+
+    <!--<Button
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#ffc862"
+        android:textColor="@android:color/black"
+        android:text="@string/save"
+        android:visibility="invisible"/>-->
 
 </LinearLayout>

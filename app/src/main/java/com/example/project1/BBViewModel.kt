@@ -64,4 +64,13 @@ class BBViewModel : ViewModel() {
         }
         return false
     }
+
+    fun getTeam(team: String): Team {
+        if(team.equals("A")){
+            return teamA
+        } else if (team.equals("B")){
+            return teamB
+        }
+        return teamA
+    }
 }
