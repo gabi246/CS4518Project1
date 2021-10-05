@@ -247,8 +247,29 @@ class MainFragment : Fragment() {
             makeClickable()
         }
 
+        updatePhotoViewTeamA()
+
+        updatePhotoViewTeamB()
 
 
+    }
+
+    private fun updatePhotoViewTeamA() {
+        if (photoFileTeamA.exists()) {
+            val bitmap = getScaledBitmap(photoFileTeamA.path, requireActivity())
+            teama_photo.setImageBitmap(bitmap)
+        } else {
+            teama_photo.setImageDrawable(null)
+        }
+    }
+
+    private fun updatePhotoViewTeamB() {
+        if (photoFileTeamB.exists()) {
+            val bitmap = getScaledBitmap(photoFileTeamB.path, requireActivity())
+            teamb_photo.setImageBitmap(bitmap)
+        } else {
+            teamb_photo.setImageDrawable(null)
+        }
     }
 
     private fun checkWinners(): Void? {
@@ -298,6 +319,30 @@ class MainFragment : Fragment() {
         free_throw_b.isClickable = false
         return null
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        requireActivity().revokeUriPermission(photoUriTeamA,Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+        requireActivity().revokeUriPermission(photoUriTeamB,Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+
+    }
+
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when {
+            requestCode == REQUEST_PHOTO -> {
+                requireActivity().revokeUriPermission(photoUriTeamA,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                updatePhotoViewTeamA()
+            }
+            requestCode == REQUEST_PHOTO -> {
+                requireActivity().revokeUriPermission(photoUriTeamB,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                updatePhotoViewTeamB()
+            }
+        } }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
