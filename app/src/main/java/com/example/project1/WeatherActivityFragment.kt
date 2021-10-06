@@ -1,11 +1,14 @@
 package com.example.project1
 
+import WeatherFetchr
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project1.api.WeatherApi
@@ -22,25 +25,14 @@ class WeatherActivityFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://https://api.openweathermap.org/data/2.5/")
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .build()
-        val weatherApi: WeatherApi = retrofit.create(WeatherApi::class.java)
 
-        val weatherHomePageRequest: Call<String> = weatherApi.fetchContents()
+        val weatherLiveData: LiveData<String> = WeatherFetchr().fetchPhotos()
+        weatherLiveData.observe(
+            this,
+            Observer { responseString ->
+                Log.d(TAG, "Response received: $responseString")
+            })
 
-        weatherHomePageRequest.enqueue(object : Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Log.e(TAG, "Failed to fetch weather", t)
-            }
-            override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
-            ) {
-                Log.d(TAG, "Response received: ${response.body()}")
-            }
-        })
     }
 
     override fun onCreateView(
