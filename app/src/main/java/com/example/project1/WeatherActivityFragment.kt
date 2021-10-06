@@ -23,7 +23,7 @@ class WeatherActivityFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://https://api.openweathermap.org/data/2.5/")
+            .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .build()
         val weatherApi: WeatherApi = retrofit.create(WeatherApi::class.java)

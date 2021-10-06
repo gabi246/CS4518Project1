@@ -17,9 +17,11 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import java.io.File
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 
 private const val TAG = "MainFragment"
 private const val KEY_INDEX = "index"
@@ -70,6 +72,16 @@ class MainFragment : Fragment() {
         game = Game()
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
         bbViewModel.currentIndex = currentIndex
+
+        val fragmentManager = (activity as FragmentActivity).supportFragmentManager
+        //added from book
+        val isFragmentContainerEmpty = savedInstanceState == null
+        if (isFragmentContainerEmpty) {
+            fragmentManager
+                .beginTransaction()
+                .add(R.id.fragmentContainer, WeatherActivityFragment.newInstance())
+                .commit()
+        }
     }
 
     override fun onCreateView(
