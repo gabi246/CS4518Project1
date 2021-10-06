@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
         startActivityForResult(captureImage, REQUEST_PHOTO)
-        }
+
     }
 
 
