@@ -36,6 +36,15 @@ class MainActivity : AppCompatActivity() {
         intent.getStringExtra(EXTRA_TEAM_A_NAME)?.let { bbViewModel.setTeamAName(it) }
         intent.getStringExtra(EXTRA_TEAM_B_NAME)?.let { bbViewModel.setTeamBName(it) }
 
+        //added from book
+        val isFragmentContainerEmpty = savedInstanceState == null
+        if (isFragmentContainerEmpty) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragmentContainer, WeatherActivityFragment.newInstance())
+                .commit()
+        }
+
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container)
         if (currentFragment == null) {
